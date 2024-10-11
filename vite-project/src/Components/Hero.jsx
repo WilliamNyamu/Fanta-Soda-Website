@@ -3,8 +3,36 @@ import Fanta1 from "../assets/fanta1.png";
 import Fanta2 from "../assets/fanta2.png";
 import Fanta3 from "../assets/fanta3.png";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, easeInOut, delay } from "framer-motion";
 import Navbar from "./Navbar";
+import { FaWhatsapp } from "react-icons/fa";
+
+const SlideRight = (delay) => {
+  return {
+    hidden: {
+       x: 100, 
+       opacity: 0 
+      },
+      show: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.5,
+          delay: delay,
+          ease: easeInOut,
+        },
+      },
+      exit: {
+        x: 100,
+        opacity: 0,
+        transition: {
+          duration: 0.5,
+          ease: easeInOut,
+        },
+      },
+  };
+};
+
 
 const HeroData = [
   {
@@ -60,24 +88,56 @@ const Hero = () => {
           {/* Data info */}
           <div className="flex flex-col text-white justify-center py-14 md:py-0 xl:max-w-[500px] order-2 md:order-1">
             <div className="space-y-5 text-center md:text-left">
-              <h1 className="text-3xl lg:text-6xl xl:text-7xl font-bold font-handwriting text-shadow">
-                {activeData.title}
-              </h1>
-              <p className="text-sm leading-loose text-white/80">
-                {activeData.subtitle}
-              </p>
-              <button className="px-4 py-2  bg-white text-black inline-block font-normal rounded-sm">
-                Order Now
-              </button>
+              <AnimatePresence mode="wait">
+                < motion.h1
+                  key={activeData.id}
+                  variants={SlideRight(0.2)}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  className="text-3xl lg:text-6xl xl:text-7xl font-bold font-handwriting text-shadow">
+                  {activeData.title}
+                </motion.h1>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                < motion.p
+                  key={activeData.id}
+                  variants={SlideRight(0.4)}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit" 
+                  className="text-sm leading-loose text-white/80">
+                  {activeData.subtitle}
+                </motion.p>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                < motion.button
+                  key={activeData.id}
+                  variants={SlideRight(0.4)}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"  
+                  className="px-4 py-2  bg-white text-black inline-block font-normal rounded-sm">
+                  Order Now
+                </motion.button>
+              </AnimatePresence>
 
               {/* list separator */}
-              <div className="flex items-center justify-center md:justify-start gap-4 md:mt-24 mb-10">
+              <div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }} 
+              className="flex items-center justify-center md:justify-start gap-4 md:mt-24 mb-10">
                 <div className="w-20 h-[1px] bg-white"></div>
                 <p>TOP RECOMMENDATION</p>
                 <div className="w-20 h-[1px] bg-white"></div>
               </div>
               {/* Image switcher */}
-              <div className="grid grid-cols-3 gap-10">
+              <div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeInOut" }}
+              className="grid grid-cols-3 gap-10">
                 {HeroData.map((data) => {
                   return (
                     <div
@@ -107,7 +167,30 @@ const Hero = () => {
             </div>
           </div>
           {/* Hero Image */}
+          <div className=" flex flex-col justify-end items-center relative order-1 md:order-2">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeData.id}
+                variants={SlideRight(0.2)}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                src={activeData.image}
+                alt={activeData.title}
+                className="w-[150px] md:w-[200px] xl:w-[350px] img-shadow relative z-10"
+              />
+            </AnimatePresence>
+            {/* Modal */}
+            <div
+            className="text-white/5 text-[300px] font-poppins font-extrabold absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+            >{activeData.modal}</div>
+          </div>
           {/* whatsapp icon */}
+          <div className="text-3xl text-white fixed bottom-10 hover:rotate-[360deg] duration-500 z-[99999] mix-blend-difference flex justify-start ">
+            <a href="#">
+              <FaWhatsapp />
+            </a>
+          </div>
         </div>
       </motion.div>
     </>
