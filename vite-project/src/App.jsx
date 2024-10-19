@@ -6,6 +6,7 @@ import BannerText from "./Components/Products/Banner";
 import Blogs from "./Components/Blogs/Blogs";
 import Faq from "./Components/FAQ/faq";
 import Footer from "./Components/Footer/Footer";
+import Partners from "./Components/Partners/Partners";
 
 const App = ()=> {
     return(
@@ -14,6 +15,7 @@ const App = ()=> {
             <Products />
             <BannerText />
             <Blogs />
+            <Partners />
             <Faq />
             <Footer />
               

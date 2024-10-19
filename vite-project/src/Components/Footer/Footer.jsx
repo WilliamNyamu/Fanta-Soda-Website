@@ -12,7 +12,7 @@ const Footer = () => {
           <motion.div 
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className='space-y-6'
           >
             <img src={Logo} alt='logo' className='max-w-[100px] invert' />
@@ -20,9 +20,6 @@ const Footer = () => {
               <p className='flex items-center gap-2'>
                 <FaPhone />
                 +254 722000000
-              </p>
-              <p className='flex items-center gap-2 mt-2'>
-                {/* Add missing content or remove this empty element */}
               </p>
             </div>
           </motion.div>
@@ -32,7 +29,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className='space-y-6'
+            className='space-y-6 space-x-4'
           >
             <h1 className='text-xl font-bold'>Quick Links</h1>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
@@ -52,7 +49,7 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className='space-y-6'
           >
             <h1 className='text-xl font-bold'>Social Links</h1>
